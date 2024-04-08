@@ -1,27 +1,38 @@
 from pprint import pprint
+from application.additional_file import create_dictionary, corrector
+
 # читаем адресную книгу в формате CSV в список contacts_list
 import csv
+
 with open("phonebook_raw.csv", encoding="utf-8") as f:
-  rows = csv.reader(f, delimiter=",")
-  contacts_list = list(rows)
+    rows = csv.reader(f, delimiter=",")
+    contacts_list = list(rows)
 # pprint(contacts_list)
-# print(contacts_list)
-
-
-# # TODO 1: выполните пункты 1-3 ДЗ
-# # ваш код
+print(contacts_list)
+# list_keys = contacts_list[0]
+#
+# # # TODO 1: выполните пункты 1-3 ДЗ
+# # # ваш код
+# print(contacts_list[0])
 contacts_list_1 = contacts_list[1::]
-
+dict_2 = {}
 for element in contacts_list_1:
-  # print(element)
-
-  if len(element[0]) and len(element[1]) and len(element[2]) != 0:
     # print(element)
-    set_1 = set()
-    for el_2 in element:
-      set_1.update(element)
-    print(set_1)
+    a = corrector(element)
+    contacts_list_1[element]
+    # print(a)
 
+
+
+
+
+    # print(element)#
+    # if len(element[0]) and len(element[1]) and len(element[2]) != 0:
+    #     # print(element)
+    #     dict_1 = create_dictionary(list_keys, element)
+    #     dict_2[f'{element[0]} {element[1]} {element[2]}'] = dict_1
+    # else:
+    #   pass
 
 
 #
@@ -31,5 +42,3 @@ for element in contacts_list_1:
 #   datawriter = csv.writer(f, delimiter=',')
 #   # Вместо contacts_list подставьте свой список
 #   datawriter.writerows(contacts_list)
-
-
