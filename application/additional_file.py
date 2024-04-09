@@ -1,4 +1,6 @@
 from pprint import pprint
+import re
+
 
 
 def create_dictionary(keys: list, contact_list: list):
@@ -133,6 +135,22 @@ def fusion_contact(dict_: dict, keys: list):
 
     return dict_, name
 
+def phone_number_correction(list_contacts :list):
+    pattern = r"(\+7|8)[\s(]*(\d{3})[)\s-]*(\d{3})[-]?(\d{2})[-]?(\d{2})[\s(]*(доб.)*[\s]?(\d{4})*[)]*"
+    substitution = r"+7(\2)\3-\4-\5 \6\7"
+    for element in list_contacts:
+        # print(element[5])
+        result = re.sub(pattern, substitution, element[5])
+        print(result)
+        element[5] = result
+    print(list_contacts)
+    return list_contacts
+
+
+
+
+
+
 
 
 
@@ -146,6 +164,9 @@ test_list = [['lastname', 'firstname', 'surname', 'organization', 'position', 'p
 list_test_2 = [['Усольцев', 'Олег', 'Валентинович', 'ФНС', 'главный специалист – эксперт отдела взаимодействия с федеральными органами власти Управления налогообложения имущества и доходов физических лиц', '+7 (495) 913-04-78', 'opendata@nalog.ru'], ['Мартиняхин', 'Виталий', 'Геннадьевич', 'ФНС', '', '+74959130037', ''], ['Наркаев', 'Вячеслав', 'Рифхатович', 'ФНС', '', '8 495-913-0168', ''], ['Мартиняхин', 'Виталий', 'Геннадьевич', 'ФНС', 'cоветник отдела Интернет проектов Управления информационных технологий', '', ''], ['Лукина', 'Ольга', 'Владимировна', 'Минфин', '', '+7 (495) 983-36-99 доб. 2926', 'Olga.Lukina@minfin.ru'], ['Паньшин', 'Алексей', 'Владимирович', 'Минфин', '', '8(495)748-49-73', '1248@minfin.ru'], ['Лагунцов', 'Иван', 'Алексеевич', 'Минфин', '', '+7 (495) 913-11-11 (доб. 0792)', ''], ['Лагунцов', 'Иван', '', '', '', '', 'Ivan.Laguntcov@minfin.ru'], ['Лукина', 'Оксана', 'Владимировна', 'Минфин', '', '+7 (495) 983-36-99 доб. 2929', 'OLukina@minfin.ru']]
 
 # test(list_test_2, test_list[0])
+
+phone_number_correction(list_test_2)
+
 
 t = {'email': '',
                                  'firstname': '',
@@ -232,13 +253,13 @@ dict_test = {'Лагунцов Иван': {'email': 'Ivan.Laguntcov@minfin.ru',
                                 'surname': 'Валентинович'}}
 
 # print(dict_test)
-a = fusion_contact(dict_test, test_list[0])
+# a = fusion_contact(dict_test, test_list[0])
 
-print(a[1])
-del dict_test[a[1][0]]
-# a_2 = dict_test.pop(a[1])
-# res = a in dict_test
-# print(res)
-# dict_test.pop
-#
-pprint(dict_test)
+# print(a[1])
+# del dict_test[a[1][0]]
+# # a_2 = dict_test.pop(a[1])
+# # res = a in dict_test
+# # print(res)
+# # dict_test.pop
+# #
+# pprint(dict_test)
